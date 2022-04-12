@@ -9,12 +9,12 @@
 .def count = r17
 .cseg
 .org	$000
-    rjmp init
+    	rjmp init
 .org	$006	
 	rjmp TIM1_COMPA
 ;===========================SETUP=======================================
 init:
-    ldi temp, low(RAMEND)
+    	ldi temp, low(RAMEND)
 	out SPL, temp
 	ldi temp, high(RAMEND)
 	out SPH, temp
@@ -49,10 +49,10 @@ init:
 	sei
 ;==========================MAIN_LOOP=====================================
 MAIN_LOOP:
-    rjmp MAIN_LOOP
+    	rjmp MAIN_LOOP
 ;==========================INTERRUPT_FUNCTION============================
 TIM1_COMPA:
-    ldi ZH, HIGH (2*NUM)
+    	ldi ZH, HIGH (2*NUM)
 	ldi ZL, LOW (2*NUM)
 	add ZL, count
 	lpm
@@ -61,10 +61,10 @@ TIM1_COMPA:
 	cpi count, 128
 	brne PC+2
 	clr count
-    reti
+    	reti
 ;===========================DATA=========================================
-NUM: .DB 127, 134, 140, 146, 152, 158, 164, 170, 176, 182
-     .DB 187, 193, 198, 203, 208, 213, 217, 222, 226, 230
+NUM: 	 .DB 127, 134, 140, 146, 152, 158, 164, 170, 176, 182
+     	 .DB 187, 193, 198, 203, 208, 213, 217, 222, 226, 230
 	 .DB 233, 236, 240, 242, 245, 247, 249, 251, 252, 253
 	 .DB 254, 254, 254, 254, 254, 253, 252, 251, 249, 247
 	 .DB 245, 242, 240, 236, 233, 230, 226, 222, 217, 213
